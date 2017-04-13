@@ -2,7 +2,7 @@ You're building a restaurant table reserving app that allows users to reserve ta
 
 reservations {
   id: int
-  TableNumber: int (not already reserved, valid number in system)
+  TableNumber: int (not already reserved, valid number in tableIDs)
   Name: string (normal word chars)
   Seats: int (2-8)
   PhoneNumber: string of numbers (xxx) xxx-xxxx
@@ -10,12 +10,13 @@ reservations {
 }
 
 table {
-  id:
-  Seats:
+  id: int (matches tableIDs in allTables)
+  Seats: int (matches number of seats for table)
   Reservations: [resid, resid]
-  AvailableTimes: [hour blocks 5-9PM]
+  AvailableTimes: [hour blocks 5-9PM] (ints)
 }
 
 allTables {
-  tableIDs: []
+  tableIDs: [ints] (reference the restaurant table numbers)
+  availableTables: [ids for tables] (updated for every reservation)
 }
